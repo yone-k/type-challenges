@@ -1,1 +1,2 @@
-type Pop<T extends any[]> = any
+// 配列の最後の要素を除いた新しい配列型を返す。スプレッド構文と条件型を使用して、最後の要素を除く全ての要素を推論する。空配列の場合は空配列を返す。
+type Pop<T extends any[]> = T extends [...infer R, any] ? R : []
