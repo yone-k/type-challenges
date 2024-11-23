@@ -1,1 +1,7 @@
-type Absolute<T extends number | string | bigint> = any
+// 数値、文字列、bigintの絶対値を文字列として返す型。
+// テンプレートリテラル型と条件型を使用して、まず入力値を文字列に変換し、
+// 1. 文字列が「-」で始まる場合（負の値）、「-」を除いた残りの部分を返す
+// 2. 文字列が「0」または「-0」の場合、「0」を返す
+// 3. それ以外の場合（正の値）、そのまま文字列として返す
+type Absolute<T extends number | string | bigint> = 
+  `${T}` extends `-${infer N}` ? N : `${T}` extends '0' | '-0' ? '0' : `${T}`
