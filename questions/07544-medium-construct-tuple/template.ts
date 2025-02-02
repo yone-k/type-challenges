@@ -1,1 +1,5 @@
-type ConstructTuple<L extends number> = any
+// 指定された長さのタプルを構築する型
+type ConstructTuple<L extends number, R extends unknown[] = []> = 
+  R['length'] extends L 
+    ? R 
+    : ConstructTuple<L, [...R, unknown]>
